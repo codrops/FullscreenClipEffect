@@ -1,0 +1,341 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 14px;
+	--color-text: #fff;
+	--color-bg: #eca590;
+    --color-bg-2: #eabfb1;
+	--color-link: #fff;
+	--color-link-hover: #fff;
+	--font-cover: tenon, sans-serif;
+	--font-weight-cover: 700;
+	--font-variation-cover: none;
+	--font-size-cover: 11vw;
+	--font-transform-cover: uppercase;
+	--color-cover: #fff;
+	--color-bg-button: #fff;
+	--color-button: #364a54;
+}
+
+.demo-1 {
+	--font-cover: "aziga", sans-serif;
+	--font-weight-cover: 400;
+}
+
+.demo-2 {
+	--color-cover: #fcf8ec;
+	--color-bg-button: #151c1e;
+	--color-button: #ece1d4;
+	--color-bg: #3d4a54;
+    --color-bg-2: #38454d;
+    --font-cover: "stadio-now-variable", sans-serif;
+	--font-variation-cover: "opsz" 1000, "wght" 588;
+}
+
+.demo-3 {
+	--color-cover: #fff;
+	--color-bg-button: #fff;
+	--color-button: #1e2f32;
+	--color-bg: #548a96;
+	--color-bg-2: #c4dedd;
+	--font-cover: "arnika-variable", sans-serif;
+	--font-variation-cover: "wdth" 100;
+}
+
+.demo-4 {
+	--color-cover: #fff;
+	--color-bg-button: #fff;
+	--color-button: #1e2f32;
+	--color-bg: #010101;
+    --color-bg-2: #272b31;
+	--font-cover: "zeitung-pro-variable", sans-serif;
+	--font-variation-cover: "opsz" 20, "wght" 556;
+}
+
+body {
+	margin: 0;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	background: linear-gradient(0deg, var(--color-bg), var(--color-bg-2), var(--color-bg));
+	font-family: tenon,-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
+}
+
+.demo-1 {
+	
+}
+
+/* Page Loader */
+.js .loading::before,
+.js .loading::after {
+	content: '';
+	position: fixed;
+	z-index: 1000;
+}
+
+.js .loading::before {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--color-bg);
+}
+
+.js .loading::after {
+	top: 50%;
+	left: 50%;
+	width: 60px;
+	height: 60px;
+	margin: -30px 0 0 -30px;
+	border-radius: 50%;
+	opacity: 0.4;
+	background: var(--color-link);
+	animation: loaderAnim 0.7s linear infinite alternate forwards;
+
+}
+
+@keyframes loaderAnim {
+	to {
+		opacity: 1;
+		transform: scale3d(0.5,0.5,1);
+	}
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-link);
+	outline: none;
+	cursor: pointer;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+	outline: none;
+}
+
+/* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+a:focus {
+	/* Provide a fallback style for browsers
+	 that don't support :focus-visible */
+	outline: none;
+	background: lightgrey;
+}
+
+a:focus:not(:focus-visible) {
+	/* Remove the focus indicator on mouse-focus for browsers
+	 that do support :focus-visible */
+	background: transparent;
+}
+
+a:focus-visible {
+	/* Draw a very noticeable focus style for
+	 keyboard-focus on browsers that do support
+	 :focus-visible */
+	outline: 2px solid red;
+	background: transparent;
+}
+
+.unbutton {
+	background: none;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	cursor: pointer;
+	color: inherit;
+	text-transform: uppercase;
+}
+
+.unbutton:focus {
+	outline: none;
+}
+
+main {
+	display: grid;
+	width: 100%;
+	height: 100vh;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	overflow: hidden;
+}
+
+.frame {
+	position: fixed;
+	z-index: 600;
+	top: 0;
+	width: 100%;
+	padding: 1.5rem;
+	display: grid;
+	grid-template-columns: auto auto 1fr auto;
+	grid-template-rows: auto;
+	grid-template-areas: 'title prev demos sponsor';
+	justify-content: start;
+	margin-bottom: 3rem;
+	grid-gap: 2rem;
+}
+
+.frame a {
+	pointer-events: auto;
+}
+
+.frame a:not(.frame__demo):not(.frame__title-back) {
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+}
+
+.frame a:not(.frame__demo):not(.frame__title-back)::before {
+	content: '';
+	height: 1px;
+	width: 100%;
+	background: currentColor;
+	position: absolute;
+	top: 90%;
+	transition: transform 0.3s;
+	transform-origin: 0% 50%;
+}
+
+.frame a:not(.frame__demo):not(.frame__title-back):hover::before {
+	transform: scaleX(0);
+	transform-origin: 100% 50%;
+}
+
+.frame__title {
+	grid-area: title;
+	display: flex;
+}
+
+.frame__title-main {
+	font-size: inherit;
+	margin: 0;
+	font-weight: inherit;
+}
+
+.frame__title-back {
+	position: relative;
+	display: flex;
+}
+
+.frame__title-back span {
+	display: none;
+}
+
+.frame__title-back svg {
+	fill: currentColor;
+}
+
+.frame__prev {
+	grid-area: prev;
+}
+
+.frame__demos {
+	grid-area: demos;
+	display: flex;
+}
+
+a.frame__demo {
+	margin: 0 0 0 1rem;
+	text-decoration: none;
+}
+
+.frame__demo--current {
+	font-weight: bold;
+	color: var(--color-link-hover);
+}
+
+.slides {
+	grid-area: 1 / 1 / -1 / -1;
+	display: grid;
+	grid-template-columns: repeat(5,22%);
+	grid-gap: 2.5vw;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+    align-content: center;
+	pointer-events: none;
+}
+
+.slides--columns {
+	grid-gap: 0;
+}
+
+.slide {
+	overflow: hidden;
+	border-radius: 23vw;
+	height: 56vh;
+	width: 100%;
+	display: grid;
+	opacity: 0;
+}
+
+.slides--grid .slide {
+	border-radius: 1vw;
+}
+
+.slides--columns .slide {
+	border-radius: 0;
+	height: 100vh;
+}
+
+.slide--current {
+	visibility: hidden;
+}
+
+.slide__img {
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+.cover {
+	grid-area: 1 / 1 / -1 / -1;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	justify-content: center;
+	z-index: 100;
+}
+
+.cover__title {
+	margin: 10vh 0 0 0;
+	align-self: center;
+	color: var(--color-cover);
+	font-family: var(--font-cover);
+	font-weight: var(--font-weight-cover);
+	font-size: var(--font-size-cover);
+	text-transform: var(--font-transform-cover);
+	font-variation-settings: var(--font-variation-cover);
+	line-height: 1;
+	pointer-events: none;
+}
+
+.cover__button {
+	align-self: end;
+	padding: 1rem 2rem;
+	margin-bottom: 3rem;
+	background: var(--color-bg-button);
+	color: var(--color-button);
+	width: min-content;
+	white-space: nowrap;
+	justify-self: center;
+	border-radius: 4rem;
+}
+
+.clip {
+	grid-area: 1 / 1 / -1 / -1;
+	display: grid;
+}
+
+.clip__img {
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+@media screen and (min-width: 53em) {
+
+}
